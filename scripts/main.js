@@ -3,8 +3,8 @@
 var example = new iro.ColorPicker(".wrapper", {
   // color picker options
   // Option guide: https://rakujira.jp/projects/iro/docs/guide.html#Color-Picker-Options
-  width: 450,
-  height: 450,
+  width: 350,
+  height: 350,
   color: {r: 255, g: 0, b: 0},
   anticlockwise: true,
   borderWidth: 1,
@@ -70,12 +70,12 @@ example.on("color:change", function(color){
     Math.round(ryg[2])
   ].join("")
   per_r.innerHTML = [
-    (ryg[0] / sum).toFixed(2) + "%"
+    ((ryg[0] / sum) * 100).toFixed(1) + "%"
   ].join("")
   per_y.innerHTML = [
-    (ryg[1] / sum).toFixed(2) + "%"
+    ((ryg[1] / sum) * 100).toFixed(1) + "%"
   ].join("")
   per_b.innerHTML = [
-    (ryg[2] / sum).toFixed(2) + "%"
+    ((ryg[2] / sum) * 100).toFixed(1) + "%"
   ].join("")
 });

@@ -1,19 +1,36 @@
-<html>
+<html ng-app="app" ng-init="lang='en'">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet"  type="text/css" href="resources/vendor/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="resources/vendor/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <script type="text/javascript" src="resources/vendor/iro.min.js"></script>
     <script type="text/javascript" src="resources/vendor/rgb2ryb.js"></script>
+    <script type="text/javascript" src="resources/vendor/angular.min.js"></script>
+    <script>
+      angular.module('app',[])
+             .controller('Main',function($scope)
+             {
+               if (window.location.href.split("?")[1] == 'es') {
+                  $scope.lang = 'es';
+                }
+             }
+      );
+    </script>
   </head>
-  <body>
+  <body ng-controller="Main">
     <div id="maincontent" >
       <div id="maintitle" class="container-fluid">
         <div class="row justify-content-center">
-          <div class="col-4">
-            <h1>Color Picker</h1>
-            <h3>A simple picker for <b>RYB</b> color codes</h3>
+          <div class="col-6">
+            <h1>
+              <span ng-show="lang=='en'">Color Picker</span>
+              <span ng-show="lang=='es'">Selector de Color</span>
+            </h1>
+            <h3>
+              <span ng-show="lang=='en'">A simple picker for <b>RYB</b> color codes</span>
+              <span ng-show="lang=='es'">Un simple selector para codigos <b>RYB</b></span>
+            </h3>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -23,13 +40,15 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-4">
-            <span class="title">Current color:</span>
+            <span class="title" ng-show="lang=='en'">Current color:</span>
+            <span class="title" ng-show="lang=='es'">Actual color:</span>
             <div id="swatch"></div>
           </div>
         </div>
         <div class="row justify-content-center">
-          <div class="col-2">
-            <span class="title">Values:</span>
+          <div class="col-5">
+            <span class="title" ng-show="lang=='en'">Values:</span>
+            <span class="title" ng-show="lang=='es'">Valores:</span>
             <table class="table" style="table-layout:fixed;">
               <thead>
                 <tr>
@@ -45,29 +64,38 @@
               <tbody>
                 <tr>
                   <th scope="row" style="text-align: left">RGB</th>
-                  <td style="text-align: center;">R:</td>
+                  <td style="text-align: center;" ng-show="lang=='en'">Red:</td>
+                  <td style="text-align: center;" ng-show="lang=='es'">Rojo:</td>
                   <td id="rgb_r" style="text-align: right;"></td>
-                  <td style="text-align: center;">G:</td>
+                  <td style="text-align: center;" ng-show="lang=='en'">Green:</td>
+                  <td style="text-align: center;" ng-show="lang=='es'">Verde:</td>
                   <td id="rgb_g" style="text-align: right;"></td>
-                  <td style="text-align: center;">B:</td>
+                  <td style="text-align: center;" ng-show="lang=='en'">Blue:</td>
+                  <td style="text-align: center;" ng-show="lang=='es'">Azul:</td>
                   <td id="rgb_b" style="text-align: right;"></td>
                 </tr>
                 <tr>
                   <th scope="row" style="text-align: left">RYB</th>
-                  <td style="text-align: center;">R:</td>
+                  <td style="text-align: center;" ng-show="lang=='en'">Red:</td>
+                  <td style="text-align: center;" ng-show="lang=='es'">Rojo:</td>
                   <td id="ryb_r" style="text-align: right;"></td>
-                  <td  style="text-align: center;">Y:</td>
+                  <td style="text-align: center;" ng-show="lang=='en'">Yellow:</td>
+                  <td style="text-align: center;" ng-show="lang=='es'">Amarillo:</td>
                   <td id="ryb_y" style="text-align: right;"></td>
-                  <td style="text-align: center;">B:</td>
+                  <td style="text-align: center;" ng-show="lang=='en'">Blue:</td>
+                  <td style="text-align: center;" ng-show="lang=='es'">Azul:</td>
                   <td id="ryb_b" style="text-align: right;"></td>
                 </tr>
                 <tr>
                   <th scope="row" style="text-align: left">RYB%</th>
-                  <td style="text-align: center;">R:</td>
+                  <td style="text-align: center;" ng-show="lang=='en'">Red:</td>
+                  <td style="text-align: center;" ng-show="lang=='es'">Rojo:</td>
                   <td id="per_r" style="text-align: right;"></td>
-                  <td  style="text-align: center;">Y:</td>
+                  <td style="text-align: center;" ng-show="lang=='en'">Yellow:</td>
+                  <td style="text-align: center;" ng-show="lang=='es'">Amarillo:</td>
                   <td id="per_y" style="text-align: right;"></td>
-                  <td style="text-align: center;">B:</td>
+                  <td style="text-align: center;" ng-show="lang=='en'">Blue:</td>
+                  <td style="text-align: center;" ng-show="lang=='es'">Azul:</td>
                   <td id="per_b" style="text-align: right;"></td>
                 </tr>
               </tbody>
@@ -79,21 +107,31 @@
     <footer class="footer">
       <div class="container-fluid">
         <div class="row justify-content-center">
-          <div class="col-2" style="text-align:center;">
-            <span class="text-muted">
-              Powered by <a href="https://github.com/jaames/iro.js">iro.js</a>
-              , <a href="https://github.com/bahamas10/node-rgb2ryb">rgb2ryb.js</a>
-              and <a href="https://getbootstrap.com/">bootstrap</a>
+          <div class="col-4" style="text-align:center;">
+            <span class="text-muted" ng-show="lang=='en'">
+              Powered by <a href="https://github.com/jaames/iro.js">iro.js</a>,
+              <a href="https://github.com/bahamas10/node-rgb2ryb">rgb2ryb.js</a>,
+              <a href="https://getbootstrap.com/">bootstrap</a> and
+              <a href="https://angularjs.org/">angular</a>
+            </span>
+            <span class="text-muted" ng-show="lang=='es'">
+              Sustentado con <a href="https://github.com/jaames/iro.js">iro.js</a>,
+              <a href="https://github.com/bahamas10/node-rgb2ryb">rgb2ryb.js</a>,
+              <a href="https://getbootstrap.com/">bootstrap</a> y
+              <a href="https://angularjs.org/">angular</a>
             </span>
           </div>
-          <div class="col-2" style="text-align:center;">
+          <div class="col-4" style="text-align:center;">
             <span class="text-muted">
               <a href="http://jaumebonet.cat">Jaume Bonet</a> @ Lausanne, 2018
             </span>
           </div>
-          <div class="col-2" style="text-align:center;">
-            <span class="text-muted">
+          <div class="col-4" style="text-align:center;">
+            <span class="text-muted" ng-show="lang=='en'">
               hosted by <a href="http://github.com"> github</a>
+            </span>
+            <span class="text-muted" ng-show="lang=='es'">
+              hospedado en <a href="http://github.com"> github</a>
             </span>
           </div>
         </div>
